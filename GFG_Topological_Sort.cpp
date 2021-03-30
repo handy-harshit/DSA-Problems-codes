@@ -27,3 +27,38 @@
 	    return ans;
 	    
 	}
+
+    /*USING DFS*/
+
+    int visited[10001];
+    stack<int> st;
+    vector<int> ans;
+    
+    void DFS(vector<int> adj[], int s){
+        visited[s] = 1;
+        for(int child : adj[s]){
+            if(visited[child] == 0){
+                DFS(adj,child);
+            }
+        }
+        st.push(s);
+    }
+
+    vector<int> topoSort(int V, vector<int> adj[]) {
+        
+        for(int i=0; i<V; i++){
+            if(visited[i] == 0){
+                DFS(adj,i);
+            }
+        }
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        
+        for(int i=0; i<V; i++){
+            visited[i] = 0;
+        }
+        
+        return ans;
+    }
