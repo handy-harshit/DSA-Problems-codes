@@ -35,7 +35,7 @@ int main(){
     sort(arr,arr+m,mycmp);
     
     int a,b,ans=0;
-    for(int i=0; i<m; i++){
+    for(int i=0,s=0; i<m,s<n-1; i++){
         a = find(arr[i].a);
         b = find(arr[i].b);
     
@@ -43,6 +43,7 @@ int main(){
         if(a != b){
             ans+= arr[i].wt;
             parent[a] = b;   //merging
+            s++;
         }
     }
     
